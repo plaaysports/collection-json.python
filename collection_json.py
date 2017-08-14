@@ -10,7 +10,7 @@ class ArrayProperty(object):
 
     """A descriptor that converts from any enumerable to a typed Array."""
 
-    def __init__(self, cls, name):
+    def __init__(self, cls, name, **kwargs):
         """Constructs typed array property
 
         :param cls type: the type of objects expected in the array
@@ -41,7 +41,7 @@ class TypedProperty(object):
 
     """
 
-    def __init__(self, cls, name):
+    def __init__(self, cls, name, **kwargs):
         """Constructs the typed property
 
         :param cls type: the type of object expected
@@ -91,7 +91,7 @@ class Data(ComparableObject):
 
     """Object representing a Collection+JSON data object."""
 
-    def __init__(self, name, value=None, prompt=None):
+    def __init__(self, name, value=None, prompt=None, **kwargs):
         self.name = name
         self.value = value
         self.prompt = prompt
@@ -118,7 +118,7 @@ class Link(ComparableObject):
 
     """Object representing a Collection+JSON link object."""
 
-    def __init__(self, href, rel, name=None, render=None, prompt=None):
+    def __init__(self, href, rel, name=None, render=None, prompt=None, **kwargs):
         self.href = href
         self.rel = rel
         self.name = name
@@ -154,7 +154,7 @@ class Error(ComparableObject):
 
     """Object representing a Collection+JSON error object."""
 
-    def __init__(self, code=None, message=None, title=None):
+    def __init__(self, code=None, message=None, title=None, **kwargs):
         self.code = code
         self.message = message
         self.title = title
@@ -213,7 +213,7 @@ class Template(ComparableObject):
         template = Template(**kwargs)
         return template
 
-    def __init__(self, data=None):
+    def __init__(self, data=None, **kwargs):
         self.data = data
 
     def __repr__(self):
@@ -327,7 +327,7 @@ class Item(ComparableObject):
     data = ArrayProperty(Data, "data")
     links = ArrayProperty(Link, "links")
 
-    def __init__(self, href=None, data=None, links=None):
+    def __init__(self, href=None, data=None, links=None, **kwargs):
         self.href = href
         self.data = data
         self.links = links
@@ -361,7 +361,7 @@ class Query(ComparableObject):
 
     data = ArrayProperty(Data, "data")
 
-    def __init__(self, href, rel, name=None, prompt=None, data=None):
+    def __init__(self, href, rel, name=None, prompt=None, data=None, **kwargs):
         self.href = href
         self.rel = rel
         self.name = name
@@ -422,7 +422,7 @@ class Collection(ComparableObject):
         return collection
 
     def __init__(self, href, links=None, items=None, queries=None,
-                 template=None, error=None, version='1.0'):
+                 template=None, error=None, version='1.0', **kwargs):
         self.version = version
         self.href = href
 
